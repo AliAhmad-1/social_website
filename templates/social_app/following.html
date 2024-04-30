@@ -1,0 +1,152 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }}
+{% endblock title %}
+    
+{% block content %}
+{% if messages %}
+<div class="alert_success ">
+    
+    {% for message in messages %}
+    <button class="close-alert" >X</button>
+    <strong> Success !</strong> {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+<body style=" background-color: rgb(1 4 8 / 4%);font-family: 'Poppins', sans-serif;">
+    <div class="base">
+
+        {% include 'social_app/aside-bar.html' %}
+
+        
+        <div class="inside-base">
+            <main class="main profile">
+                <div class="notific" >
+                    <h5>Following</h5>
+                    <div class="img-menu">
+                        <img src="{% static 'images/icon-menu.svg' %}" alt="" class="menu">
+
+                    </div>
+                    
+                </div>
+                
+
+                <div class="new_post">
+                    
+                    {% if request.user.image_profile %}
+                    <img src="{{request.user.image_profile.url}}" alt="image_user" class="image_user">
+                    {% else %}
+                    <img src="{% static 'images/no_pic.png' %}" alt="image_user" class="image_user">
+    
+                    {% endif %}
+                        
+                    <form action="{% url 'create' %}" method="POST" novalidate enctype="multipart/form-data" id="myform">
+                        <input type="hidden" name="p-id" id="p-id">
+                        <input type="hidden" name="is_authenticated" id="is_authenticated" value="{{request.user}}">
+                        {% csrf_token %}
+         
+                        {{form.content}}
+                        
+                        <p class="error"></p>
+                        {% comment %} <textarea name="content" id="textarea"  cols="30" rows="4" placeholder="What's happening?"></textarea> {% endcomment %}
+                        <div class="cont_post-image hide">
+                            
+                            <img src="" class="post_image">
+                            <span class="close">X</span>
+                        </div>
+                        <div class="footer">
+                           {{form.image}}
+                            {% comment %} <input type="file"  name='image' id="image_post" hidden> {% endcomment %}
+                            <label for="id_image"><svg width="1.1em" height="1.4em" viewBox="0 0 16 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-left:2px">
+                            <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12z"></path>
+                            <path d="M10.648 7.646a.5.5 0 0 1 .577-.093L15.002 9.5V14h-14v-2l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71z"></path>
+                            <path fill-rule="evenodd" d="M4.502 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"></path>
+                        </svg>Photo
+                        </label>
+    
+                            <div class="right">
+                                <a href="#" class="cancel">Cancel</a>
+                                <input type="button" value="Post" id="create-post">
+                            </div>
+                        </div>
+                
+                    </form>
+                </div>
+            
+                {% for person in followers %}
+                
+                <div class="person">
+                    <div class="left">
+                        
+                        {% if person.user_to.image_profile %}
+                        <img src="{{person.user_to.image_profile.url}}" alt="username photo" width="50px">
+                        {% else %}
+                        <img src="{% static 'images/no_pic.png' %}" alt="username photo" width="50px">
+
+                        {% endif %}
+                        
+
+                            
+                        <div>
+                            <a href="{% url 'profile_user' person.user_to.id %}"><p class="username">{{person.user_to.username}}</p></a>
+                            <p class="date">joined at {{person.user_to.date_joined|date:"DATE_FORMAT"}}</p>
+                        </div>
+                    </div>
+                    <div class="right">
+                        
+
+                            
+                        <input type="button" onclick="follow(this);"  data-person-id="{{person.user_to.id}}" 
+                            
+                            {% if person.user_to in user.followers.all %}
+                            data-action="unfollow"
+                            value="UnFollow"
+                            class="follow following"
+                            {% else %}
+                            data-action="follow"
+                            value="Follow"
+                            class="follow "
+                            {% endif %}
+                                
+                        
+                            >
+                        
+                    </div>
+
+                </div>
+                {% empty %}
+                <div class="empty-content">
+                    <p>You haven't followed anyone yet ..!</p>
+                </div>
+            {% endfor %}
+
+
+            {% include 'social_app/footer.html' %}
+            </main>
+
+            {% include 'social_app/right_section.html' %}
+        </div>
+    
+    </div>
+</body>
+
+
+    
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    

@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ block.super }}- Login
+{% endblock title %}
+
+{% block content %}
+<div class="base_container">
+    <div class="pages ">
+        <div class="second_page">
+            <div class="content">
+                <img src="{% static 'images/undraw_people_search_re_5rre.svg' %}" alt="undraw_welcoming_re_x0qo">
+
+                <h3>Meet Awesome People & Enjoy Yourself</h3>
+                <p>Find friends on social platform ipsum dolor sit amet consectetur adipiscing elit</p>
+                <a href="#" class="skip">Skip</a>
+                <button class="next">Next</button>
+                <div class="progress">
+                </div>
+            </div>
+        </div>
+        <div class="first_page">
+            <div class="content">
+                <img src="{% static 'images/undraw_welcoming_re_x0qo.svg' %}" alt="undraw_welcoming_re_x0qo">
+
+                <h3>Find Friends & Get inspiration</h3>
+                <p>Find friends on social platform ipsum dolor sit amet consectetur adipiscing elit</p>
+                <a href="#" class="skip">Skip</a>
+                <button class="next">Next</button>
+                <div class="progress">
+
+                </div>
+
+            </div>
+        </div>
+        <div class="third_page ">
+            <div class="content">
+                <h1>Sign In Now</h1>
+                <p>please enter your information below in order to login to your account .</p>
+                <form action=""  method="post" novalidate autocomplete="off" >
+                    
+                     {% csrf_token %}
+                    {% if form.non_field_errors %}
+                    <div class="alert_danger">
+                        {% for error in form.non_field_errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %} 
+                    
+                    {% for field in form  %}
+                        <div class="form_control">
+                        {% if form.is_bound %}
+                            {% if field.errors %}
+                                {% render_field field class="invalid" %}
+                                {% for error in field.errors %}
+                                    <p class="error" >{{error}}</p>
+                                {% endfor %}
+                            {% else %}
+                            {% render_field field class="valid" %}
+
+                            {% endif %}
+
+                        {% else %}
+                            {% render_field field  %}
+                        {% endif %}
+                        <label for="{{field.id_for_label}}">{{field.label}}</label>
+
+                        
+                        {% if forloop.last %}
+                        <img src="{% static 'images/icons8-hide-30.png' %}" alt="icons8-hide-30.png" class="hide_show">
+                        {% endif %}
+                            
+   
+                        </div>
+
+                    {% endfor %} 
+
+                    <a href="{% url 'password_reset' %}" class="forgot-password">Forgot Password ?</a>
+                    <input type="submit" value="Sign In">
+                    <p class="form_ques"> Don't have an account ? <a href="{% url 'register' %}">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
+    
+    

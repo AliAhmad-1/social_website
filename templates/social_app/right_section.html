@@ -1,0 +1,62 @@
+{% load static %}
+
+<section class="right-section ">
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" placeholder="Search" onkeyup="search(this);">
+    </form>
+    <div class="right-section-content">
+        <h3>You might know </h3>
+        <div class="persons">
+            {% for person in suggestion %}
+            <div class="person">
+                <div class="left">
+                    
+                    {% if person.user_to.image_profile %}
+                    <img src="{{person.user_to.image_profile.url}}" alt="username photo" width="50px">
+                    {% else %}
+                    <img src="{% static 'images/no_pic.png' %}" alt="username photo" width="50px">
+
+                    {% endif %}
+                    
+
+                        
+                    <div>
+                        <a href="{% url 'profile_user' person.user_to.id %}"><p class="username">{{person.user_to.username}}</p></a>
+                        <p class="date">joined at {{person.user_to.date_joined|date:"DATE_FORMAT"}}</p>
+                    </div>
+                </div>
+                <div class="right">
+                    
+
+                        
+                    <input type="button" onclick="follow(this);"  data-person-id="{{person.user_to.id}}" 
+                        
+                        {% if person.user_to in user.followers.all %}
+                        data-action="unfollow"
+                        value="UnFollow"
+                        class="follow following"
+                        {% else %}
+                        data-action="follow"
+                        value="Follow"
+                        class="follow "
+                        {% endif %}
+                            
+                       
+          
+                        >
+                    
+                </div>
+
+            </div>
+
+        {% empty %}
+        <p style="text-align: center; margin-top: 2rem; color: rgb(32, 132, 207);">There are no people yet</p>
+        {% endfor %}
+        </div>
+
+            
+
+
+    </div>
+</section>

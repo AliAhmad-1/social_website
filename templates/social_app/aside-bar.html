@@ -1,0 +1,78 @@
+{% load static %}
+<aside class="side-bar">
+
+    <img src="{% static 'images/icon-close.svg' %}" alt="icon-close" class="side-bar-close">
+    <div class="side-content">
+        <div>
+            {% comment %} <h2 class="logo">Velo<span>fy</span></h2> {% endcomment %}
+            <img src="{% static 'images/logo.png' %}"  class="logo" alt="logo">
+            <ul>
+
+                <li>
+                    <a href="{% url 'home' %}">
+
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-card-heading" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                            <path fill-rule="evenodd" d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg> 
+                        <span>All Posts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'following' %}">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+                        </svg>
+                        <span>Following</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'saves' %}">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 12l5 3V3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10.234z"></path>
+                          </svg> 
+                          <span>Saved</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'profile_user' request.user.id %}">
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+                        </svg>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                    <button type="submit">
+                        <img src="{% static 'images/logout.png' %}" alt="logout.png" >
+                        <span>Logout</span>
+                    </button>
+                    </form>
+
+
+                </li>
+
+                <button class="create_post">Create Post</button>
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="person">
+        
+        {% if request.user.image_profile %}
+        <img src="{{request.user.image_profile.url}}" alt="username photo" width="50px">
+        {% else %}
+        <img src="{% static 'images/no_pic.png' %}" alt="username photo" width="50px">
+        {% endif %}
+            
+        <div>
+            <p class="username">{{request.user}}</p>
+            <p class="date">{{request.user.date_joined|date:"DATETIME_FORMAT"}}</p>
+        </div>
+    </div>
+
+</aside>

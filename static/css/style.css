@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.base_container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.content {
+    margin: auto;
+    max-width: 390px;
+    min-width: 300px;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content img {
+    width: 180px;
+    height: 180px;
+}
+
+.content h3 {
+    margin: 1.5rem 0;
+    text-align: center;
+    width: 300px;
+    font-weight: 700;
+    line-height: 35px;
+}
+
+.content p {
+    padding: 0 1.9rem;
+    text-align: center;
+    width: 100%;
+    color: rgb(153, 153, 153);
+}
+
+.content a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 700;
+    margin: 1.8rem 0 0.9rem 0;
+}
+
+.content .next {
+    width: 83%;
+    background-color: rgb(67, 85, 186);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 400;
+}
+
+.content .next:hover {
+    background-color: rgba(67, 85, 199, .9);
+}
+
+.content .progress {
+    margin-top: 2rem;
+    width: 25%;
+    border: 2.5px solid rgba(155, 155, 175, .1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.content h1 {
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 1rem;
+}
+
+.content form {
+    width: 90%;
+}
+
+.content form .form_control {
+    position: relative;
+}
+
+.content form .form_control label {
+    padding: 0 5px;
+    color: #0000008a;
+    font-size: 13px;
+    background-color: transparent;
+    z-index: -1;
+    position: absolute;
+    top: 21px;
+    left: 43px;
+    transition: .3s all ease-in-out;
+}
+
+.content form .has-data label {
+    position: absolute;
+    top: -2px;
+    left: 38px;
+    background-color: white;
+    z-index: 2;
+    transition: .3s all ease-in-out;
+}
+
+.content form input:focus+label,
+.content form input:valid+label {
+    position: absolute;
+    top: -2px;
+    left: 38px;
+    background-color: white;
+    font-size: 13px;
+    z-index: 2;
+    transition: .3s all ease-in-out;
+}
+
+.content form .form_control img {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 20px;
+    right: 14px;
+    cursor: pointer;
+}
+
+.content a.forgot-password {
+    display: flex;
+    justify-content: end;
+    color: rgb(22, 55, 190);
+    margin: .3rem 0 .9rem 0;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.content a.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.content form input[type='text'] {
+    background-image: url(../images/icons8-person-64.png);
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 12px;
+}
+
+.content form input[type='email'] {
+    background-image: url(../images/icons8-email-48.png);
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 12px;
+}
+
+.content form input[type='password'] {
+    background-image: url(../images/icons8-password.svg);
+    background-repeat: no-repeat;
+    background-size: 23px;
+    background-position: 12px;
+}
+
+.content form input {
+    background-color: transparent;
+    padding: 11px 45px;
+    font-size: 14px;
+    width: 100%;
+    margin: .45rem 0;
+    border-radius: 5px;
+    border: 1px solid rgba(118, 118, 118, 0.323);
+}
+
+.content form input.invalid {
+    border: 1px solid red;
+}
+
+.content form input.valid {
+    border: 1px solid green;
+}
+
+form p.error {
+    color: rgb(226, 39, 39);
+    font-size: 12px;
+    position: relative;
+    top: 0px;
+    text-align: left;
+    padding-left: 0;
+}
+
+div.alert_danger {
+    width: 100%;
+    background-color: #f8d7da;
+    border: 1px solid #f1aeb5;
+    color: rgba(0, 0, 0, 0.67);
+    padding: 6px;
+    line-height: 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+form .form_ques {
+    color: rgba(0, 0, 0, 0.913);
+    font-weight: 500;
+}
+
+.content form input:focus {
+    outline: none;
+    border-color: rgb(22, 55, 190);
+}
+
+.content form input.next {
+    padding: 12px;
+    width: 100%;
+    font-weight: 700;
+    margin: 0 0 1.8rem 0;
+}
+
+.content form p a {
+    color: rgb(57, 123, 223);
+    text-decoration: underline;
+    display: block;
+    margin-top: 0;
+}
+
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    height: 560px;
+    gap: 6rem;
+    overflow: hidden;
+}
+
+.content form input[type='submit'] {
+    width: 100%;
+    background-color: rgb(67, 85, 186);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 400;
+    margin-top: 1.4rem;
+}
+
+.content form input[type='submit']:hover {
+    background-color: rgba(67, 85, 199, .9);
+}
+
+form .form_cancel {
+    color: rgb(30, 23, 158);
+    font-weight: 500;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}

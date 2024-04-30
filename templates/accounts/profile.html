@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}
+    {{ block.super }}
+{% endblock title %}
+    
+{% block content %}
+{% if messages %}
+<div class="alert_success ">
+    
+    {% for message in messages %}
+    <button class="close-alert" >X</button>
+    <strong> Success !</strong> {{message}}
+    {% endfor %}
+</div>
+{% endif %}
+<body style=" background-color: rgb(1 4 8 / 4%);font-family: 'Poppins', sans-serif;">
+    <div class="base">
+
+        {% include 'social_app/aside-bar.html' %}
+
+        
+        <div class="inside-base">
+            <main class="main profile">
+                <div class="notific" >
+                    <h5>Edit Profile</h5>
+                    <div class="img-menu">
+                        <img src="{% static 'images/icon-menu.svg' %}" alt="" class="menu">
+
+                    </div>
+                    
+                </div>
+          
+                <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                   {% csrf_token %}
+                    <div class="images">
+                        
+                        {% if request.user.cover_profile %}
+                        <img src="{{request.user.cover_profile.url}}" alt="" class="image_cover">
+                        {% else %}
+                        <img src="{% static 'images/no_pic.png' %}" alt="" class="image_cover">
+                        {% endif %}
+                            
+                        <label for="id_cover_profile"><svg width="1.1em" height="1.1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="#244dee" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"></path>
+                            <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"></path>
+                        </svg></label>
+                       
+                        <div class="input_hidden">
+                            {{form.cover_profile}}
+                        </div>
+                        
+                        {% if request.user.image_profile %}
+                        <img src="{{request.user.image_profile.url}}" alt="" class="image_profile">
+                        {% else %}
+                        <img src="{% static 'images/no_pic.png' %}" alt="" class="image_profile">
+                        {% endif %}
+                        <label for="id_image_profile"><img src="{% static 'images/icons8-plus.svg' %}" alt=""></label>
+                        <div class="input_hidden">
+                            {{form.image_profile}}
+                        </div>
+                       
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <label for="username">{{form.username.label_tag}}</label>
+                            {{form.username}}
+                            {% comment %} <input type="text" name="username" id="username"> {% endcomment %}
+                        </div>
+                        <div>
+                            <label for="email">{{form.email.label_tag}}</label>
+                            {{form.email}}
+                            {% comment %} <input type="email" name="email" id="email"> {% endcomment %}
+                        </div>
+                        <div class="bio">
+                            <label for="bio">{{form.bio.label_tag}}</label>
+                            {{form.bio}}
+                            {% comment %} <textarea name="bio" id="bio" cols="30" rows="5"></textarea> {% endcomment %}
+                        </div>
+                    </div>
+
+                    <div class="sub">
+                        <button type="submit">Update</button>
+                        
+                        <a href="{% url 'profile_user' request.user.id %}" class="cancel"  >Cancel</a>
+                    </div>
+
+
+
+                </form>
+
+
+                {% include 'social_app/footer.html' %}
+            </main>
+
+            {% include 'social_app/right_section.html' %}
+        </div>
+    
+    </div>
+</body>
+
+
+    
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
