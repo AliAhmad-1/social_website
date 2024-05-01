@@ -33,7 +33,8 @@ class RegisterForm(UserCreationForm):
 
         
 class UpdateProfileUser(forms.ModelForm):
-    image_profile=forms.ImageField()
+    # image_profile=forms.ImageField(required=False)
+    # cover_profile=forms.ImageField(required=False)
     
     class Meta:
         model=User
